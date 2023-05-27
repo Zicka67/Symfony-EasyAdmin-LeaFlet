@@ -33,7 +33,7 @@ class DashboardController extends AbstractDashboardController
     {
         // return parent::index();
         $url = $this->adminUrlGenerator
-            ->setController(FormationCrudController::class)
+            ->setController(CategoryCrudController::class)
             ->generateUrl();
 
             return $this->redirect($url);
