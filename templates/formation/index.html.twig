@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les formations{% endblock %}
+
+{% block body %}
+
+<div class="container container-marginBot">
+    <div class="basic-tab">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="card-header" scope="col">Titre de la formation ({{ formations|length }})</th>
+                    <th class="card-header" scope="col">Sessions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for formation in formations %}
+                <tr>
+                    <td>{{ formation.titleFormation }}</td>
+                    <td><a class="btn btn-primary" href="{{ path('formation_sessions', {'id': formation.id}) }}">Voir les sessions</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+

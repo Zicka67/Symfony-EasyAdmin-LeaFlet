@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les programmes{% endblock %}
+
+{% block body %}
+
+<div class="basic-tab-module">
+    {% for programme in programmes %}
+    <table class="tabDetailSession">
+        <thead>
+        <tr>
+            <th colspan="2">Programme {{ programme.id }}</th>
+        </tr>
+        </thead>
+        <tbody> 
+        <tr>
+            <td class="text-center">Nom du programme :</td>
+            <td class="margin text-center">{{ programme.session.getTitleSection }}</td>
+        </tr>
+        <tr>
+            <td class="text-center">Nom du Module :</td>
+            <td class="reset text-center">{{ programme.modules.getTitleModules }}</td>
+        </tr> 
+        <tr>
+          <td class="text-center">durée :</td>
+          <td class="reset text-center">{{ programme.duree }} jours</td>
+        </tr> 
+        </tbody>
+    </table><br>
+    {% endfor %}
+  </div>
+
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les étudiants{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    {% if students is defined and students is not empty %}
+        <div class="basic-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Étudiants ({{ students|length }}) :</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>
+                                <div class="flex-container">
+                                    <div>
+                                        <a href="{{ path('app_showDetailsStudent', {'id': student.id}) }}">
+                                            <span>{{ student.firstName }} {{ student.lastName }}</span>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <a class="btn btnMargin" href="{{ path('app_showDetailsStudent', {'id': student.id}) }}">Voir les détails</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p>Aucun étudiant.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

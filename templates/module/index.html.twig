@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les modules{% endblock %}
+
+{% block body %}
+
+<div class="basic-tab-module">
+    <td colspan="1" class="backgreen"><a href="{{ path('programme_create') }}">Ajouter un module</a></td>
+
+    {% for module in modules %}
+    <table class="tabDetailSession">
+        <thead>
+        <tr>
+            <th colspan="2">Informations</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="text-center">Nom du module :</td>
+            <td class="margin text-center">{{ module.getTitleModules }}</td>
+        </tr>
+        <tr>
+            <td class="text-center">Category :</td>
+            <td class="reset text-center">{{ module.Category.getTitleCategory }}</td>
+        </tr> 
+        </tbody>
+    </table><br>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+
+
+
+
+

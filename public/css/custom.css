@@ -1,0 +1,31 @@
+.page-title {
+    margin: 50px 0 50px 25px;
+    font-weight: bold;
+    font-size: 2rem;
+    color: black;
+}
+
+.card-header {
+    font-weight: bold;
+    color: black;
+}
+
+#registration_form_agreeTerms {
+    margin-left: 20px;
+}
+
+.form-check-label {
+    margin-left: -25px;
+}
+
+.red {
+    color: red !important;
+}
+
+.green {
+    color: green !important;
+}
+
+.container-marginBot {
+    margin-bottom: 5vw;
+}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les formateurs{% endblock %}
+
+{% block body %}
+
+    <ul>
+        {% for former in formers %}
+            <li>{{ former.firstName }} {{ former.lastName }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+

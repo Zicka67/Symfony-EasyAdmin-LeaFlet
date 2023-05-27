@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de {{ student.firstName }} {{ student.lastName }}{% endblock %}
+
+{% block body %}
+
+<div class="container container-marginBot">
+    <div class="basic-tab">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Détails de {{ student.firstName }} {{ student.lastName }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Prénom :</td>
+                    <td>{{ student.firstName }}</td>
+                </tr>
+                <tr>
+                    <td>Nom :</td>
+                    <td>{{ student.lastName }}</td>
+                </tr>
+                <tr>
+                    <td>Phone :</td>
+                    <td>{{ student.phone }}</td>
+                </tr>
+                <tr>
+                    <td>Email :</td>
+                    <td>{{ student.email }}</td>
+                </tr>
+                <tr>
+                    <td>Ville :</td>
+                    <td>{{ student.ville }}</td>
+                </tr>
+                <tr>
+                    <td>Sessions en cours de {{ student.firstName }} {{ student.lastName }}</td>
+                    <td>
+                        {% if estInscrit %}
+                            <table class="sub-table">
+                                {% for session in sessions %}
+                                    <tr>
+                                        <td><a href="{{ path('app_showDetailsSession', {'id': session.id}) }}">{{ session.getTitleSection }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            Pas de session actuellement
+                        {% endif %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

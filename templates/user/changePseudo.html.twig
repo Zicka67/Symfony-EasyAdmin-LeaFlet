@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ app.user.pseudo }}{% endblock %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div class="container">
+        <div class="basic-tab">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="2">Modifier le profil :</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <h1>Changer le Pseudo</h1>
+
+                            {{ form_start(changePseudoForm) }}
+                            <div class="mb-3">
+                                {{ form_row(changePseudoForm.pseudo, {
+                                    'label': 'Nouveau Pseudo',
+                                    'attr': {'class': 'form-control'}
+                                }) }}
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="return confirm('Êtes-vous sûr de vouloir modifier le pseudo ?')">Modifier le pseudo</button>
+                            {{ form_end(changePseudoForm) }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('script/script.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if session is defined %}
+        {{ session.titlesection }}
+    {% else %}
+        Liste des sessions
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+{% if session is defined %}
+   
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        Informations
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                            <tr>
+                                <td class="text-center">Professeur :</td>
+                                <td class="text-center">{{ session.former.firstName }} {{ session.former.lastName }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Date de début :</td>
+                                <td class="text-center">{{ session.dateBegin|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">Date de fin :</td>
+                                <td class="text-center">{{ session.dateEnd|date('d/m/Y') }}</td>
+                            </tr>
+                            <tr>
+                              <td class="text-center">Nombre de places total :</td>
+                              <td class="text-center">{{ session.nbPlaces }}</td>
+                          </tr>
+                          <tr>
+                              <td class="text-center">Nombre de places disponibles :</td>
+                              <td class="text-center {% if session.students|length < session.nbPlaces %}green{% else %}red{% endif %}">{{ session.students|length }}/{{ session.nbPlaces }}</td>
+                          </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                {% if session.students is not empty %}
+                    <div class="card">
+                        <div class="card-header">
+                            Liste des stagiaires inscrits ({{ session.students|length }})
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tbody>
+                                {% for student in session.students %}
+                                    <tr>
+                                            <td><a href="{{ path('app_showDetailsStudent', {'id': student.id}) }}">{{ student.firstName }} {{ student.lastName }}</a></td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+                    {% if studentsNotInSession is defined and studentsNotInSession is not empty %}
+                        <div class="card">
+                            <div class="card-header">
+                                Étudiants non inscrits ({{ studentsNotInSession|length }})
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+                                    <tbody>
+                                    {% for student in studentsNotInSession %}
+                                        <tr>
+                                            <td>{{ student.firstName }} {{ student.lastName }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="card">
+                            <div class="card-body">
+                                Aucun étudiant libre.
+                            </div>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% if programmes is not empty %}
+        <div class="container container-marginBot">
+            <div class="card">
+                <div class="card-header">
+                    Modules pour cette session
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                        {% set totalDuree = 0 %}
+                        {% for programme in programmes %}
+                            {% set totalDuree = totalDuree + programme.duree %}
+                            <tr>
+                                <td>{{ programme.modules.titleModules }}</td>
+                                <td>{{ programme.duree }} jours</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="2">Total des modules :</th>
+                            <th>{{ totalDuree }} jours</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% else %}
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                Titre des sessions ({{ sessions|length }})
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <tbody>
+                    {% for session in sessions %}
+                        <tr>
+                            <td>{{ session.titlesection }}</td>
+                            <td><a class="btn btn-primary"
+                                   href="{{ path('app_showDetailsSession', {'id': session.id}) }}">Voir les détails</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
+

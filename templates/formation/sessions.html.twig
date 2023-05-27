@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Liste des sessions {% endblock %}
+
+{% block body %}
+
+       
+<div class="container container-marginBot">
+  <div class="basic-tab"> 
+    <table class="table">
+      <thead>
+        <tr>  
+          <th class="card-header" scope="col">Titre des sessions ({{ sessions|length }})</th>
+          <th scope="col">Détails</th>  
+        </tr>
+      </thead>
+      <tbody>
+        {% for session in sessions %}
+          <tr>
+            <td class="firstTd">{{ session.titlesection }}</td>
+            <td><a class="btn btn-primary" href="{{ path('app_showDetailsSession', {'id': session.id}) }}">Voir les détails</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}  
