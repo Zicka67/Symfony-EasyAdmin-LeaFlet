@@ -11,5 +11,9 @@ les personnes inscrites à chaque session.
 On pourra également afficher la liste des stagiaires (détails ainsi que les sessions auxquelles se sont
 inscrits les stagiaires).
 
-3. Enfin, une interface permettra d'ajouter des stagiaires et des sessions et on donnera la possibilité de programmer les
-différents modules dans les sessions ajoutées précédemment
+3. Intégration de EasyAdmin pour gérer le CRUD et la partie Admin
+
+4. Intégration de LeaFlet pour la map dans contacts
+
+5. Utilisation de Bootstrap et Bootswatch pour tester certaines fonctionnalitées 
+
